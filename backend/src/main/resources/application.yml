@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ai-test-agent-backend
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/ai_test_agent?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+app:
+  ai:
+    enabled: true
+    mock-mode: ${AI_MOCK_MODE:true}
+    provider: openai-compatible
+    base-url: ${OPENAI_BASE_URL:https://api.openai.com/v1}
+    api-key: ${OPENAI_API_KEY:}
+    model: ${OPENAI_MODEL:gpt-5-codex}
+    timeout-ms: ${OPENAI_TIMEOUT_MS:30000}
+
+logging:
+  level:
+    root: INFO
+    com.example.aitestagent: DEBUG
